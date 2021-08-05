@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %} Add a Pet {% endblock %} {% block
+content %}
+
+<h1>Edit a pet</h1>
+
+<!--   STILL NEED TO EDIT 
+
+<form action="/add" method="post">
+  {{ form.hidden_tag () }} {% for field in form if (field.widget.input_type !=
+  'hidden') and (field.widget.input_type != 'submit') %}
+  <div class="form-group">
+    {{ field.label }} {{ field(class="form-control") }}
+
+    <section>
+      {% if field.errors %} {% for error in field.errors %}
+      <span class="text-danger">{{ error}}</span>
+      {% endfor %} {% endif %}
+    </section>
+  </div>
+  {% endfor %} {{ form.submit(class="btn btn-primary") }}
+</form>
+-->
+{% endblock %}
