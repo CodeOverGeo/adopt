@@ -48,8 +48,21 @@ def add_pet_form():
         return render_template('add_pet.html', form=form)
 
 
-@app.route('/edit', methods=['GET', 'POST'])
-def edit_pet_form():
+@app.route('/<int:pet_id>', methods=['GET', 'POST'])
+def edit_pet_form(pet_id):
     """Renders a form to edit and existing pet"""
 
-    pass
+    pet = Pet.query.get_or_404(pet_id)
+    form = EditPetForm(obj=pet)
+
+    if form.validate_on_submit():
+        """if form validates, update database"""
+        pet.notes = form.notes.data
+        pet.available = form.available.data
+        pet.photo_url = form.photo_url.data
+        db.session.commit()
+        return redirect('/')
+
+    else:
+        """if form doesn't validate, show edit pet page"""
+        return render_template("edit_pet.html", form=form, pet=pet)

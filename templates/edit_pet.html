@@ -1,13 +1,20 @@
-{% extends 'base.html' %} {% block title %} Add a Pet {% endblock %} {% block
-content %}
+{% extends 'base.html' %} {% block title %} {{ pet.name }} {% endblock %} {%
+block content %}
 
-<h1>Edit a pet</h1>
+<h1>Edit {{ pet.name }}</h1>
 
-<!--   STILL NEED TO EDIT 
+{% if pet.photo_url %}
+<img class="img-fluid" src="{{ pet.photo_url }}" alt="{{ pet.name }} photo" />
+{% endif %}
+<p>Species: {{ pet.species }}</p>
+{% if pet.age %}
+<p>Age: {{ pet.age }}</p>
+{% endif %}
 
-<form action="/add" method="post">
+<form action="" method="post">
   {{ form.hidden_tag () }} {% for field in form if (field.widget.input_type !=
-  'hidden') and (field.widget.input_type != 'submit') %}
+  'hidden') and (field.widget.input_type != 'submit') and
+  (field.widget.input_type != 'checkbox')%}
   <div class="form-group">
     {{ field.label }} {{ field(class="form-control") }}
 
@@ -17,7 +24,8 @@ content %}
       {% endfor %} {% endif %}
     </section>
   </div>
-  {% endfor %} {{ form.submit(class="btn btn-primary") }}
+  {% endfor %} {{ form.available.label }} {{ form.available(class="form-check")
+  }} {{ form.submit(class="btn btn-primary") }}
 </form>
--->
+
 {% endblock %}

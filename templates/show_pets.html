@@ -12,7 +12,7 @@
         alt="{{ pet.name }} thumbnail"
         class="img-fluid"
       />
-      <a href="">{{ pet.name }}</a>
+      <a href="/{{ pet.id }}">{{ pet.name }}</a>
       {% if pet.available %} <strong> is available! </strong>
     </div>
     {% endif %} {% else %}
